@@ -1,0 +1,28 @@
+<app-common></app-common>
+<h1 class="page-title">Notification</h1>
+
+
+
+<table class="notification-table" *ngIf="notis && notis.length > 0">
+  <thead>
+    <tr>
+      <th>
+        Message
+      </th>
+      <th>Action</th>
+      <th><button class="delete-all-button"(click)="deleteAllNoti()">Delete All</button></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let not of notis">
+      <td>{{ not.messgae }}</td>
+      <td><button class="delete-button"(click)="deleteNoti(not.notiId)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!notis || notis.length <= 0" class="no-notification-text">No Notification Available !!</p>
+
+  
+
+  

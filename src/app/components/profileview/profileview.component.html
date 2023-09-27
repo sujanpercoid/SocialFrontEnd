@@ -1,0 +1,49 @@
+ <app-common></app-common>
+<div class="card" style="margin: 10px;" *ngFor="let feed of profilereturn">
+    <div class="card-body" style="display: flex; justify-content: space-evenly">
+      <div>
+        <p class="card-link">User: {{ feed.username }}</p>
+        <p class="card-text">{{ feed.name }}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <span style="font-weight: bold;">{{ feed.follows }}</span>
+        <p class="card-text">
+          <a [routerLink]="['/followlist', feed.username]">Following</a>
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <span style="font-weight: bold;">{{ feed.followers }}</span>
+        <p class="card-text">
+          <a [routerLink]="['/followlist', feed.username]">Followers</a>
+        </p>
+      </div>
+     
+        <button class="flow-button" *ngIf="!sameUser() && !followerIsFollowing()" (click)="follow()">Follow</button>
+
+           <!-- Show the "Unfollow" button if usernames are not equal -->
+      <button class="flow-button" *ngIf="!sameUser() && followerIsFollowing()" (click)="unfollow()">Unfollow</button>  
+    </div>
+  </div>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+    <mat-tab label="Posts">
+      <div *ngIf="!pPosts || pPosts.length === 0">No Post Available</div>
+    <div class="card" style="margin: 10px;" *ngFor="let pPost of pPosts" >
+      
+      <div class="card-body">
+        <div>
+          User :<a class="card-link" [routerLink]="['/profile', pPost.username]"> @{{ pPost.username }}</a>
+        </div>
+        <div>{{ pPost.view }}</div>
+        <p class="card-text"><strong></strong> {{ pPost.post }}</p> 
+    </div>
+    </div>
+    </mat-tab>
+  
+    <mat-tab label="Likes">
+      
+    </mat-tab>
+  </mat-tab-group>
+  
+
+
+   

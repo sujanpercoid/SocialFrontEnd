@@ -1,0 +1,22 @@
+<app-common></app-common>
+<div class="post-form">
+    <h1>Post</h1>
+    <form [formGroup]="post" (ngSubmit)="addPost()" class="row">
+
+   <div class="col-8" style="margin-bottom:20px;">
+    <label for="view">View:</label>
+    <select id="view" name="view" formControlName="view" required>
+      <option value="public">Public</option>
+      <option value="follower">Follower</option>
+    </select>
+   </div>
+   <label for="post">Post:</label>
+ <div class="col-10">
+  <textarea type="text" id="post" name="post" formControlName="post" required> </textarea>
+ </div>
+
+      <div class="col-4"><button type="submit" [disabled]="!post.valid">Post</button></div>
+
+    </form>
+    <p style="margin-top: 20px;">Back To Home <a [routerLink]="['/feed']">Home</a></p>
+  </div>

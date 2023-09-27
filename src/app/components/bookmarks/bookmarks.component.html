@@ -1,0 +1,20 @@
+<app-common></app-common>
+<h1 class="page-title">Bookmarks</h1>
+
+
+<div *ngIf="!bookmarks || bookmarks.length === 0">No Bookmarks Available</div>
+    <div class="card" style="margin: 10px;" *ngFor="let bookmark of bookmarks">
+      <div class="card-body">
+        <div>
+          User :<a class="card-link" [routerLink]="['/profile', bookmark.username]"> @{{ bookmark.username }}</a>
+        </div>
+        <div>{{ bookmark.view }}</div>
+        <p class="card-text"><strong></strong> {{ bookmark.post }}</p>
+  
+        <!-- Bookmark Button with Icon -->
+         <button (click)="removebookmarkPost(bookmark.bookmarkId)" >
+            <mat-icon>bookmark</mat-icon> remove bookmark
+          </button>
+        
+      </div>
+    </div>

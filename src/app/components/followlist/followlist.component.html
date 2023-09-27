@@ -1,0 +1,21 @@
+<app-common></app-common>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+  <mat-tab label="Followers">
+    <div *ngIf="!follower || follower.length === 0">No Follower</div>
+    <div class="card" style="margin: 10px;" *ngFor="let feed of follower">
+      <div class="card-body">
+        <div> User :<a class="card-link" [routerLink]="['/profile', feed.username]"> @{{ feed.username }}</a></div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Following">
+    <div *ngIf="!following || following.length === 0">No Following</div>
+    <div class="card" style="margin: 10px;" *ngFor="let feed of following">
+      <div class="card-body">
+        <div> User :<a class="card-link" [routerLink]="['/profile', feed.username]"> @{{ feed.follows }}</a></div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+
