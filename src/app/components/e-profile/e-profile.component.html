@@ -1,0 +1,36 @@
+<app-common></app-common>
+<h1>Edit {{ user }} Profile</h1>
+<div class="container bg-light p-4">
+  <form #form="ngForm" (ngSubmit)="updateProfile()">
+    <div class="form-group">
+      <label for="id">Id:</label>
+      <input type="text" id="id" name="id" [(ngModel)]="profileData.id" class="form-control" readonly required>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="profileData.username" class="form-control" readonly required>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="profileData.name" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number:</label>
+      <input type="number" id="phone" name="phone" [(ngModel)]="profileData.phone" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="profileData.email" class="form-control" required>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="button" class="btn btn-danger" (click)="deleteProfile(profileData.id)">Delete</button>
+    </div>
+  </form>
+</div>
+

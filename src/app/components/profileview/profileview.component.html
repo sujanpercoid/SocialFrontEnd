@@ -22,6 +22,10 @@
 
            <!-- Show the "Unfollow" button if usernames are not equal -->
       <button class="flow-button" *ngIf="!sameUser() && followerIsFollowing()" (click)="unfollow()">Unfollow</button>  
+
+      <!-- edit for same profile -->
+      <button class="flow-button" *ngIf="sameUser()" [routerLink]="['/editprofile', feed.username] " >View Profile</button> 
+
     </div>
   </div>
   <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">

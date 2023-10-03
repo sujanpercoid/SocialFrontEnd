@@ -18,6 +18,8 @@ import { FollowlistComponent } from './components/followlist/followlist.componen
 import { NotificationComponent } from './components/notification/notification.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { MatIconModule } from '@angular/material/icon';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { EProfileComponent } from './components/e-profile/e-profile.component';
 
 
 
@@ -33,7 +35,9 @@ import { MatIconModule } from '@angular/material/icon';
     ProfileviewComponent,
     FollowlistComponent,
     NotificationComponent,
-    BookmarksComponent
+    BookmarksComponent,
+    EditProfileComponent,
+    EProfileComponent
     
   ],
   imports: [

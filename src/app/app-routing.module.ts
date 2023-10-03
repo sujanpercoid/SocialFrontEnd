@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { EProfileComponent } from './components/e-profile/e-profile.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { FollowlistComponent } from './components/followlist/followlist.component';
 import { LoginComponent } from './components/login/login.component';
@@ -42,6 +44,14 @@ const routes: Routes = [
   {
     path : 'bookmark/:id',
     component : BookmarksComponent
+  },
+  {
+    path: 'editprofile/:id',
+    component : EditProfileComponent
+  },
+  {
+    path :'eprofile/:id',
+    component : EProfileComponent
   }
 ];
 

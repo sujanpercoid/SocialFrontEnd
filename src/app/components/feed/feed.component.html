@@ -1,28 +1,41 @@
 <app-common></app-common>
-<h3> T Clone</h3>
+<h3> T Clone</h3> 
 
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
   <mat-tab label="For You">
     <div *ngIf="!feeds || feeds.length === 0">No Post Available</div>
     <div class="card" style="margin: 10px;" *ngFor="let feed of feeds" >
-      <!-- <div *ngFor="let bookmark of bookmarks"> -->
+      
       <div class="card-body">
         <div>
           User :<a class="card-link" [routerLink]="['/profile', feed.username]"> @{{ feed.username }}</a>
         </div>
         <div>{{ feed.view }}</div>
-        <p class="card-text"><strong></strong> {{ feed.post }}</p>
+        <p class="card-text"><strong></strong> {{ feed.post }}</p> 
+        Likes : {{feed.totalLikes}}
   
         <!-- Bookmark Button with Icon -->
-        <button class="flow-button" *ngIf="!samePost(feed.postId)" (click)="bookmarkPost(feed.postId)">
+         <button class="flow-button" *ngIf="!samePost(feed.postId)" (click)="bookmarkPost(feed.postId)">
           <mat-icon>bookmark</mat-icon>  Bookmark
         </button>
-        <button class="flow-button" *ngIf="samePost(feed.postId)" [routerLink]="['/bookmark', user]">
+        <button class="flow-button" *ngIf="samePost(feed.postId)" [routerLink]="['/bookmark', user]" [ngStyle]="{'color':  'blue'}">
           <mat-icon>bookmark</mat-icon> Bookmarked
         </button>
+         
+        <!-- for likes -->
+              <!-- Like Button with Heart Icon -->
+            <button class="flow-button" *ngIf = "!forLikes(feed.postId)" (click)="likePost(feed.postId)">
+              <mat-icon>favorite</mat-icon> Like
+            </button>
+            <!-- Like Button with Heart Icon (Red) -->
+            <button class="flow-button"  *ngIf = "forLikes(feed.postId)"  (click)="likedPost(feed.postId)" [ngStyle]="{'color':  'red'}">
+              <mat-icon>favorite</mat-icon> Liked
+              </button>
+
+
         
         
-      <!-- </div> -->
+      
     </div>
     </div>
   </mat-tab>
@@ -33,28 +46,38 @@
 
   <mat-tab label="Your Following ">
     <div *ngIf="!followingPost || followingPost.length === 0">No Post Available</div>
-    <div class="card" style="margin: 10px;" *ngFor="let feed of followingPost">
-      <!-- <div *ngFor="let bookmark of bookmarks"> -->
-      <div class="card-body" >
+    <div class="card" style="margin: 10px;" *ngFor="let feed of followingPost"> 
+      
+       <div class="card-body" >
         <div> User :<a class="card-link" [routerLink]="['/profile',feed.username]"> @{{feed.username}}</a></div>
         <div>{{feed.view}}</div>
         <p class="card-text"><strong></strong> {{ feed.post }}</p>
+        Likes : {{feed.totalLikes}}
         <!-- Bookmark Button with Icon -->
         
-        <button class="flow-button" *ngIf="!samePost(feed.postId)" (click)="bookmarkPost(feed.postId)">
+         <button class="flow-button" *ngIf="!samePost(feed.postId)" (click)="bookmarkPost(feed.postId)">
           <mat-icon>bookmark</mat-icon>  Bookmark
         </button>
-        <button class="flow-button" *ngIf="samePost(feed.postId)" [routerLink]="['/bookmark', user]">
+        <button class="flow-button" *ngIf="samePost(feed.postId)" [routerLink]="['/bookmark', user]" [ngStyle]="{'color':  'blue'}">
           <mat-icon>bookmark</mat-icon> Bookmarked
-        </button>
+        </button> 
+        <!-- for likes -->
+              <!-- Like Button with Heart Icon -->
+              <button class="flow-button" *ngIf = "!forLikes(feed.postId)" (click)="likePost(feed.postId)">
+                <mat-icon>favorite</mat-icon> Like
+              </button>
+              <!-- Like Button with Heart Icon (Red) -->
+              <button class="flow-button"  *ngIf = "forLikes(feed.postId)"  (click)="likedPost(feed.postId)" [ngStyle]="{'color':  'red'}">
+                <mat-icon>favorite</mat-icon> Liked
+                </button>
         
        
         
-      <!-- </div>  -->
-      </div>
+      </div>  
+       
     </div>
   </mat-tab>
   
-</mat-tab-group>
+</mat-tab-group> 
 
 

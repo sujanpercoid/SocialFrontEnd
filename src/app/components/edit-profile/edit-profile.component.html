@@ -1,0 +1,86 @@
+<app-common></app-common>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+td {
+  background-color: #ffffff;
+  color: #666;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2><a class="card-link" [routerLink]="['/profile', user]"> @{{ user }}</a></h2>
+ 
+
+  <table >
+    <tr>
+      <th>Id:</th>
+      <td>{{profileData.id}}</td>
+    </tr>
+    <tr>
+      <th>UserName:</th>
+      <td>{{profileData.username}}</td>
+    </tr>
+    <tr>
+      <th>FullName:</th>
+      <td>{{profileData.name}}</td>
+    </tr> 
+    <tr>
+      <th>Phone Number:</th>
+      <td>{{profileData.phone}}</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{profileData.email}}</td>
+    </tr>
+  </table>
+  <button class="flow-button"  [routerLink]="['/eprofile', user] " >Edit Profile</button> 
+</div>
+
+
+</body>
+</html>

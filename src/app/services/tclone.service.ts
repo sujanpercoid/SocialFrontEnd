@@ -10,6 +10,7 @@ import { Follow } from '../models/follow.model';
 import { Bookmark } from '../models/bookmark.model';
 import { RBookmark } from '../models/removebookmark.model';
 import { ProfilePost } from '../models/profilepost.model';
+import { Profile } from '../models/profile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +79,26 @@ export class TcloneService {
       .set('viewer', profilepostreq.viewer);
     return this.http.get(this.baseApiUrl+ '/api/feed/profilepost',{ params });
   }
- 
+ getPEdit(id : string): Observable<Profile> {
+   return this.http.get<Profile>(this.baseApiUrl+ '/api/profile/profile/'+id);
+ }
+ updateProfile(id: string, updateProfileRequest: Profile): Observable<Profile> {
+  return this.http.patch<Profile>(this.baseApiUrl + '/api/profile/update/' + id, updateProfileRequest);
+}
+deleteProfile(id : string):Observable<Profile>{
+  return this.http.delete<Profile>(this.baseApiUrl + '/api/profile/delete/'+id);
+}
+sendlikeData(likereq : RBookmark){
+  return this.http.post(this.baseApiUrl+ '/api/bookmark/like',likereq);
+}
+removelikeData(rlikereq : RBookmark){
+  const params = new HttpParams()
+      .set('postId', rlikereq.postId)
+      .set('username', rlikereq.username);
+  return this.http.delete(this.baseApiUrl+ '/api/bookmark/removelike',{params});
+}
+getlikes(id : string){
+  return this.http.get(this.baseApiUrl+ '/api/bookmark/getlikes/'+id);
+}
+
 }

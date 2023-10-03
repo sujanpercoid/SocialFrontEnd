@@ -6,6 +6,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { Bookmark } from 'src/app/models/bookmark.model';
 import { RBookmark } from 'src/app/models/removebookmark.model';
 
+
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -29,6 +30,11 @@ export class FeedComponent implements OnInit {
   }
   bookmarks: any;
   bookmarkid : any;
+  likeData : RBookmark={
+    postId :0,
+    username : ''
+  }
+  likeinfo : any;
 
   
   constructor(private tclone:TcloneService,private router : Router){}
@@ -59,6 +65,14 @@ export class FeedComponent implements OnInit {
       }
       
     )
+
+    this.tclone.getlikes(this.user).subscribe(
+      (res) => {
+        this.likeinfo= res;
+        console.log("likeinfo",this.likeinfo);
+
+      }
+    )
    
     
 
@@ -68,6 +82,10 @@ export class FeedComponent implements OnInit {
     // Check if there is a matching postId in the bookdata array
     return this.bookmarks.some((bookmark: { postId: number }) => bookmark.postId === postId);
   }
+  forLikes(postId: number): boolean {
+    return this.likeinfo.some((likeinfo: { postId: number }) => likeinfo.postId === postId);
+  }
+  
   
   
 
@@ -80,17 +98,32 @@ export class FeedComponent implements OnInit {
       window.location.reload();
     });
   }
-  removebookmarkPost(id: number){
-    
-    this.rbookData.username = this.user;
-    this.rbookData.postId= id;
-    console.log(this.rbookData);
-    // this.tclone.rboookFeed(this.rbookData).subscribe(
-    //   (res)=>{
-    //     window.location.reload();
-    //   }
-    // );
-    
-  }
+  
+  likePost(id : number){
+    this.likeData.username=this.user;
+    this.likeData.postId=id;
+    console.log(this.likeData);
+    this.tclone.sendlikeData(this.likeData).subscribe(
+      (res) => {
+        console.log(res);
+        
+        window.location.reload();
+      }
+    )
+    }
+
+    likedPost(id : number)
+    {
+      this.likeData.username=this.user;
+    this.likeData.postId=id;
+    console.log(this.likeData);
+    this.tclone.removelikeData(this.likeData).subscribe(
+      (res) => {
+        console.log(res);
+        
+        window.location.reload();
+      }
+    )
+    }
 
 }
