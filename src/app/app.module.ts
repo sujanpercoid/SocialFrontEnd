@@ -20,6 +20,10 @@ import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { MatIconModule } from '@angular/material/icon';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { EProfileComponent } from './components/e-profile/e-profile.component';
+import { ViewlikesComponent } from './components/viewlikes/viewlikes.component';
+import { MypostsComponent } from './components/myposts/myposts.component';
+import { EditmypostComponent } from './components/editmypost/editmypost.component';
+import { MylikesComponent } from './components/mylikes/mylikes.component';
 
 
 
@@ -37,7 +41,11 @@ import { EProfileComponent } from './components/e-profile/e-profile.component';
     NotificationComponent,
     BookmarksComponent,
     EditProfileComponent,
-    EProfileComponent
+    EProfileComponent,
+    ViewlikesComponent,
+    MypostsComponent,
+    EditmypostComponent,
+    MylikesComponent
     
   ],
   imports: [

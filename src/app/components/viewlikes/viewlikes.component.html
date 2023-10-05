@@ -1,0 +1,10 @@
+<app-common></app-common>
+<div class="container">
+    <h2>Post Liked By</h2>
+    <div *ngIf="!likeinfos || likeinfos.length === 0" class="alert alert-info">No Likes</div>
+    <div *ngFor="let info of likeinfos">
+        <a class="card-link" [routerLink]="['/profile', info.username]">@{{ info.username }}</a>
+    </div>
+    <a class="btn btn-primary" [routerLink]="['/feed']">Back Home</a>
+</div>
+

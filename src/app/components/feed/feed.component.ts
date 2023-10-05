@@ -115,9 +115,9 @@ export class FeedComponent implements OnInit {
     likedPost(id : number)
     {
       this.likeData.username=this.user;
-    this.likeData.postId=id;
-    console.log(this.likeData);
-    this.tclone.removelikeData(this.likeData).subscribe(
+      this.likeData.postId=id;
+      console.log(this.likeData);
+      this.tclone.removelikeData(this.likeData).subscribe(
       (res) => {
         console.log(res);
         

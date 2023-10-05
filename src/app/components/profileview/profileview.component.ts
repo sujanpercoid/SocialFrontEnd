@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Follow } from 'src/app/models/follow.model';
 import { ProfilePost } from 'src/app/models/profilepost.model';
+import { RBookmark } from 'src/app/models/removebookmark.model';
 import { Unfollow } from 'src/app/models/unfollow.model';
 import { TcloneService } from 'src/app/services/tclone.service';
 
@@ -22,6 +23,11 @@ export class ProfileviewComponent implements OnInit {
     poster : '',
     viewer : ''
   }
+  likeData : RBookmark={
+    postId :0,
+    username : ''
+  }
+  lPosts: any;
   follows : any;
   username: any;
   profilereturn :any;
@@ -30,6 +36,7 @@ export class ProfileviewComponent implements OnInit {
   followid :any;
   poster : any;
   pPosts:any;
+  likeinfo : any;
 
   
   constructor(private tclone:TcloneService,private router : Router,private route :ActivatedRoute){}
@@ -53,6 +60,14 @@ export class ProfileviewComponent implements OnInit {
 
       }
     )
+    this.tclone.getlikes(this.username).subscribe(
+      (res) => {
+        this.likeinfo= res;
+        console.log("likeinfo",this.likeinfo);
+
+      }
+    )
+
     this.route.paramMap.subscribe(
       (params)=> {
         this.follows = params.get('id');
@@ -84,9 +99,25 @@ export class ProfileviewComponent implements OnInit {
           }
         )
       }
-      
-})
-    
+      })
+
+    //get post for profile likes
+    this.route.paramMap.subscribe(
+      (params)=> {
+        this.poster = params.get('id');
+        if(this.follows)
+        {
+          this.profilePostData.viewer=this.username;
+          this.profilePostData.poster=this.poster;
+          this.tclone.getProfileLikePost(this.profilePostData).subscribe(
+            (likepostdata) => {
+              this.lPosts = likepostdata;
+              console.log("Post For Like",this.lPosts);
+  
+            }
+          )
+        }
+      })
 
   }
   followerIsFollowing(): boolean {
@@ -107,8 +138,35 @@ export class ProfileviewComponent implements OnInit {
     });
     return samUser;
   }
+  forLikes(postId: number): boolean {
+    return this.likeinfo.some((likeinfo: { postId: number }) => likeinfo.postId === postId);
+  }
 
-    
+  likePost(id : number){
+    this.likeData.username=this.username;
+    this.likeData.postId=id;
+    console.log(this.likeData);
+    this.tclone.sendlikeData(this.likeData).subscribe(
+      (res) => {
+        console.log(res);
+        
+        window.location.reload();
+      }
+    )
+    }  
+    likedPost(id : number)
+    {
+      this.likeData.username=this.username;
+    this.likeData.postId=id;
+    console.log(this.likeData);
+    this.tclone.removelikeData(this.likeData).subscribe(
+      (res) => {
+        console.log(res);
+        
+        window.location.reload();
+      }
+    )
+    }
   
     
  

@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
-import { Post } from '../models/post.model';
+import { Post, PostEdit } from '../models/post.model';
 import { Res } from '../models/res.model';
 import { Follow } from '../models/follow.model';
 import { Bookmark } from '../models/bookmark.model';
@@ -100,5 +100,33 @@ removelikeData(rlikereq : RBookmark){
 getlikes(id : string){
   return this.http.get(this.baseApiUrl+ '/api/bookmark/getlikes/'+id);
 }
+getlikeuser(id : number){
+  return this.http.get(this.baseApiUrl+ '/api/bookmark/likeuser/'+id);
+}
 
+getProfileLikePost(profilepostreq : ProfilePost)
+  {
+    const params = new HttpParams()
+      .set('poster', profilepostreq.poster)
+      .set('viewer', profilepostreq.viewer);
+    return this.http.get(this.baseApiUrl+ '/api/feed/postforlikes',{ params });
+  }
+//get all my posts
+myposts(id:string){
+  return this.http.get(this.baseApiUrl+ '/api/feed/getmyposts/'+id);
+}
+//get all my likes
+mylikes(id:string){
+  return this.http.get(this.baseApiUrl+ '/api/feed/mylikes/'+id);
+}
+getPostForEdit(id : string) : Observable<PostEdit>
+{
+  return this.http.get<PostEdit>(this.baseApiUrl+ '/api/feed/postedit/'+id);
+}
+updatePost(id : number,upostreq : PostEdit,){
+  return this.http.put(this.baseApiUrl+ '/api/feed/updatepost/'+id,upostreq);
+}
+deletPost(id : number){
+   return this.http.delete(this.baseApiUrl+ '/api/feed/deletepost/'+id);
+}
 }

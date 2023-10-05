@@ -1,0 +1,32 @@
+<app-common></app-common>
+
+    <div *ngIf="!myposts || myposts.length === 0">No Post Available</div>
+    <div class="my-posts-table" *ngIf="myposts && myposts.length > 0">
+      <h3 class="my-posts-header" style ="text-align: center;">My Posts</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Views</th>
+            <th>Post</th>
+            <th>Edit Post</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mypost of myposts">
+            <td>
+              
+                {{ mypost.username }}
+              
+            </td>
+            <td>{{ mypost.view }}</td>
+            <td>{{ mypost.post }}</td>
+            <td>
+                <button class="btn btn-primary btn-sm" [routerLink]="['/editpost', mypost.postId] "  >Edit</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+ 
+  

@@ -1,0 +1,24 @@
+<app-common></app-common>
+<h3> My Likes</h3>
+<div label="For You">
+  <div *ngIf="!likedPosts || likedPosts.length === 0">No Post Available</div>
+  <div class="card" style="margin: 10px;" *ngFor="let likedPost of likedPosts">
+    <div class="card-body"  >
+      <div>
+        User :<a class="card-link" [routerLink]="['/profile', likedPost.username]"> @{{ likedPost.username }}</a>
+      </div>
+      <div>{{ likedPost.view }}</div>
+      <p class="card-text"><strong>Post:</strong> {{ likedPost.post }}</p>
+      <button class="flow-button"  (click)="removelike(likedPost.postId)" [ngStyle]="{'color':  'red'}">
+        <mat-icon>favorite</mat-icon> Liked
+        </button> 
+    </div>
+    
+    
+  </div>
+</div>
+
+
+
+       
+  

@@ -1,37 +1,37 @@
 
-  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+<div style="display: flex;height: 100vh;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" routerLink="/feed">Home</a>
-        <a class="navbar-brand" routerLink="/noti">Notification</a>
-        <a class="navbar-brand" [routerLink]="['/bookmark',this.user_session]">Bookmark</a>
-        <a class="nav-link" [routerLink]="['/profile',this.user_session]">Hello, {{user_session}} </a>
-        <button class="nav-link" routerLink="" (click)="sessionOut()">Log Out</button>
-
-        
-        
+      <ul class="navbar-nav flex-column">
+        <h5>Hello, {{ user_session }}</h5>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/feed">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/post">Post </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/myposts', user_session]">My Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/mylikes', user_session]">My Likes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/bookmark', user_session]">Bookmark</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/noti">Notification</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/profile', user_session]">Profile</a>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" routerLink="" (click)="sessionOut()">Log Out</button>
+        </li>
+      </ul>
     </div>
-</nav> -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <ul class="navbar-nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/feed">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/noti">Notification</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/bookmark', user_session]">Bookmark</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/profile', user_session]">Hello, {{ user_session }}</a>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" routerLink="" (click)="sessionOut()">Log Out</button>
-      </li>
-    </ul>
-  </div>
-</nav>
+  </nav>
+</div>
 
 
 

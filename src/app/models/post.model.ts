@@ -4,3 +4,9 @@ export interface Post{
     view : string,
 
 }
+export interface PostEdit {
+    post : string,
+    username : string,
+    view : string,
+    postId: number
+}

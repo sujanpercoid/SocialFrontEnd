@@ -12,7 +12,7 @@
         </div>
         <div>{{ feed.view }}</div>
         <p class="card-text"><strong></strong> {{ feed.post }}</p> 
-        Likes : {{feed.totalLikes}}
+        <a  class="card-link" [routerLink]="['/viewlikes', feed.postId]" > Likes</a>: {{feed.totalLikes}} 
   
         <!-- Bookmark Button with Icon -->
          <button class="flow-button" *ngIf="!samePost(feed.postId)" (click)="bookmarkPost(feed.postId)">
@@ -30,7 +30,7 @@
             <!-- Like Button with Heart Icon (Red) -->
             <button class="flow-button"  *ngIf = "forLikes(feed.postId)"  (click)="likedPost(feed.postId)" [ngStyle]="{'color':  'red'}">
               <mat-icon>favorite</mat-icon> Liked
-              </button>
+              </button>      
 
 
         
@@ -69,7 +69,7 @@
               <!-- Like Button with Heart Icon (Red) -->
               <button class="flow-button"  *ngIf = "forLikes(feed.postId)"  (click)="likedPost(feed.postId)" [ngStyle]="{'color':  'red'}">
                 <mat-icon>favorite</mat-icon> Liked
-                </button>
+                </button>                                                              
         
        
         

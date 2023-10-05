@@ -1,0 +1,32 @@
+<app-common></app-common>
+<h3>Post Edit</h3>
+<div class="container bg-light p-4">
+    <form #form="ngForm" (ngSubmit)="updatePost()">
+     
+  
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="postedit.username" class="form-control" readonly required>
+      </div>
+      <div class="form-group" style="margin-bottom:20px;">
+        <label for="view">View:</label>
+        <select id="view" name="view" [(ngModel)]="postedit.view"  form-groupformControlName="view" required>
+          <option value="public">Public</option>
+          <option value="follower">Follower</option>
+        </select>
+       </div>
+      <div class="form-group">
+        <label for="name">Post:</label>
+        <input type="text" id="post" name="post" [(ngModel)]="postedit.post" class="form-control" required>
+      </div>
+  
+     
+  
+      
+  
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProfile(postedit.postId)">Delete</button>
+      </div>
+    </form>
+  </div>
